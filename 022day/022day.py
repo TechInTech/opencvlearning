@@ -12,7 +12,6 @@ import numpy as np
 """
 
 
-
 def main():
     src = cv.imread('../picsrc/cai.jpg')
     cv.namedWindow('pic', cv.WINDOW_AUTOSIZE)
@@ -24,11 +23,12 @@ def main():
     # erode_img(src)
 
     t2 = cv.getTickCount()
-    time = (t2 - t1)/cv.getTickFrequency()
+    time = (t2 - t1) / cv.getTickFrequency()
     print('Time consume: %f s' % time)
 
     cv.waitKey(0)  # 程序等待指定的时间后执行以下语句(时间单位为：ms)
     cv.destroyAllWindows()
+
 
 if __name__ == '__main__':
     main()

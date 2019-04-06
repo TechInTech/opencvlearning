@@ -11,6 +11,8 @@ import numpy as np
 """
 
 # 获得二值图像
+
+
 def edge(image):
     blurred = cv.GaussianBlur(image, (3, 3), 0)
     gray = cv.cvtColor(blurred, cv.COLOR_BGR2GRAY)
@@ -32,19 +34,20 @@ def contours(image):
     # 获得二值图像法2
     binary = edge(image)
 
-    cloneImage, contours, heriachy = cv.findContours(binary, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)  #RETR_TREE包含检测内部
+    cloneImage, contours, heriachy = cv.findContours(
+        binary, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)  # RETR_TREE包含检测内部
     # cloneImage, contours, heriachy = cv.findContours(binary, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE) #RETR_EXTERNAL检测外部轮
     for i, contour in enumerate(contours):
         # cv.drawContours(image, contours, i, (0, 0, 255), -1)  # -1填充轮廓， 2显示轮廓
-        cv.drawContours(image, contours, i, (0, 0, 255), 2) # 绘制轮廓
+        cv.drawContours(image, contours, i, (0, 0, 255), 2)  # 绘制轮廓
         print(i)
     cv.imshow('detect contours', image)
 
 
 def main():
     src = cv.imread('../picsrc/circle.jpg')
-    cv.namedWindow('pic', cv.WINDOW_AUTOSIZE)  #创建GUI窗口,形式为自适应
-    cv.imshow('template', src)   #通过名字将图像和窗口联系
+    cv.namedWindow('pic', cv.WINDOW_AUTOSIZE)  # 创建GUI窗口,形式为自适应
+    cv.imshow('template', src)  # 通过名字将图像和窗口联系
 
     t1 = cv.getTickCount()
 
@@ -52,11 +55,12 @@ def main():
     contours(src)
 
     t2 = cv.getTickCount()
-    time = (t2 - t1)/cv.getTickFrequency()
+    time = (t2 - t1) / cv.getTickFrequency()
     print('Time consume: %f s' % time)
 
-    cv.waitKey(0)  #等待用户操作，里面等待参数是毫秒，我们填写0，代表是永远，等待用户操作
-    cv.destroyAllWindows()  #销毁所有窗口
+    cv.waitKey(0)  # 等待用户操作，里面等待参数是毫秒，我们填写0，代表是永远，等待用户操作
+    cv.destroyAllWindows()  # 销毁所有窗口
+
 
 if __name__ == '__main__':
     main()
